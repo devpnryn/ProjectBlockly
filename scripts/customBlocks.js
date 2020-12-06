@@ -66,9 +66,3 @@ Blockly.defineBlocksWithJsonArray([{
     return [code, Blockly.JavaScript.ORDER_NONE];
   };
   
-  Blockly.JavaScript['robot_move'] = function(block) {
-    var value_position = Blockly.JavaScript.valueToCode(block, 'position', Blockly.JavaScript.ORDER_ATOMIC);
-    // TODO: Assemble Python into code variable.
-    var code = '...\n';
-    return code;
-  };

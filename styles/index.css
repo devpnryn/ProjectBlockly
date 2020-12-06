@@ -45,20 +45,6 @@ h1 {
 [mode="blockly"] .blockly-editor {
   left: 0;
 }
-
-.maker {
-  display: flex;
-  flex-flow: column;
-  justify-content: space-between;
-  height: 460px;
-  width: 400px;
-}
-
-.maker > div {
-  display: flex;
-  justify-content: space-between;
-}
-
 .button {
   width: 120px;
   height: 140px;

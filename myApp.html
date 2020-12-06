@@ -2,11 +2,11 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>My App: Generating JavaScript</title>
+  <title>ProjectBlockly: Translate Blockly to GCodes</title>
   <script src="scripts/blockly_compressed.js"></script>
   <script src="scripts/blocks_compressed.js"></script>
   <script src="scripts/javascript_compressed.js"></script>
-  <script src="scripts/robot.js"></script>
+  <script src="scripts/customBlocks.js"></script>
   <script src="scripts/en.js"></script>
   <style>
     body {
@@ -20,15 +20,18 @@
   </style>
 </head>
 <body>
-  <h1><a href="https://developers.google.com/blockly/">Blockly</a> &gt;
+  <h1><a href="https://developers.google.com/blockly/">Project Blockly</a> &gt;
+    <!--Buttons-->
   <p>
     <button onclick="showCode()">Show JavaScript</button>
     <button onclick="generateGCode()">Print G-Code Stream </button>
     <button onclick="SaveGCodes()">Download G-Code Stream file </button>
   </p>
 
+  <!--placeholder for Blockley box-->
   <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
 
+  <!--Toolbox-->
   <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
     <category name="Logic" colour="%{BKY_LOGIC_HUE}">
       <block type="controls_if"></block>
@@ -247,7 +250,7 @@
       </block>
     </category>
     <category name="Lists" colour="%{BKY_LISTS_HUE}">
-      <block type="robot_position"></block>
+      <block type="robot_position"></block> <!--custom block-->
       <block type="lists_create_with">
         <mutation items="0"></mutation>
       </block>
@@ -341,7 +344,7 @@
     <category name="Functions" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>
   </xml>
 
-
+<!--sample into blocs-->
   <xml xmlns="https://developers.google.com/blockly/xml" id="startBlocks" style="display: none">
     <block type="controls_if" inline="false" x="20" y="20">
       <mutation else="1"></mutation>
@@ -390,54 +393,8 @@
       </statement>
     </block>
   </xml>
-
-  <script>
-    var demoWorkspace = Blockly.inject('blocklyDiv',
-        {media: '../media/',
-         toolbox: document.getElementById('toolbox')});
-    Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),
-                               demoWorkspace);
-
-    function showCode() {
-      // Generate JavaScript code and display it.
-      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-      var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-      alert(code);
-    }
-    function generateGCode(){
-              // Generate JavaScript code and display it.
-      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-      var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-     alert(extractGCodes(code))
-    }
-    function SaveGCodes(){
-      // save G-Codes to a file
-      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-      var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-      let gcodes = extractGCodes(code)
-      // let fs = require('fs')
-      // let file = fs.createWriteStream('GCodes.txt')
-      // file.on('error', ()=>{})
-      // gcodes.forEach((w)=>{file.write(w.join('\n'))})
-      // file.end()
-    }
-    function extractGCodes(code) {
-    const regex = /Gcode:(.*)/gm;
-    let m;
-    let gStream = []
-    while ((m = regex.exec(code)) !== null) {
-        // This is necessary to avoid infinite loops with zero-width matches
-        if (m.index === regex.lastIndex) {
-            regex.lastIndex++;
-        }
-        if (m === null)
-            return;
-        let gCode = m[1].replace(/[),;,']/g, '').trim()
-        gStream.push(gCode)
-    }
-    return gStream
-}
-  </script>
+<!--Event Handlers-->
+  <script src="src/app.js"></script>
 
 </body>
 </html>
