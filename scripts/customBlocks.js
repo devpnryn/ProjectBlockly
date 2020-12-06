@@ -5,7 +5,7 @@ const G_COMMANDS = {
   MOVE: "Move",
   DWELL: "Dwell",
   MOVE_TO_ORIGIN: "MoveToOrigin",
-  TURNOFF_MOTORS: "TurnOffMotors",
+  TURN_OFF_MOTORS: "TurnOffMotors",
   WAIT_TO_FINISH: "WaitToFinish",
   USE_ABSOLUTE_DISTANCE: "UseAbsoluteDistance",
   USE_RELATIVE_DISTANCE: "UseRelativeDistance",
@@ -21,7 +21,7 @@ const G_COMMANDS = {
   SET_BED_TEMPERATURE: "SetBedTemperature",
   SET_BED_TEMPERATURE_WITH_WAIT: "SetBedTemperatureWithWait",
   SET_FAN_SPEED: "SetFanSpeed",
-  TURNOFF_FAN: "TurnOffFan",
+  TURN_OFF_FAN: "TurnOffFan",
   EMERGENCY_STOP: "EmergencyStop",
   GET_CURRENT_POSITION: "GetCurrentPosition",
   GET_FIRMWARE_VERSION: "GetFirmwareVersion",
@@ -34,7 +34,7 @@ gCommandsDictionary[G_COMMANDS.DWELL] = `G4 P%1`;
 // Move to origin: G28 [X] [Y] [Z]
 gCommandsDictionary[G_COMMANDS.MOVE_TO_ORIGIN] = `G28 X%1 Y%2 Z%3`;
 //Turn off motors: M18 or M84
-gCommandsDictionary[G_COMMANDS.TurnOffFan] = `M18`;
+gCommandsDictionary[G_COMMANDS.TURN_OFF_MOTORS] = `M18`;
 //Wait for current moves to finish: M400
 gCommandsDictionary[G_COMMANDS.WAIT_TO_FINISH] = `M400`;
 //Use absolute/relative distances for extrusion: M82, M83
@@ -67,7 +67,7 @@ gCommandsDictionary[G_COMMANDS.SET_BED_TEMPERATURE_WITH_WAIT] = `M190 S%1`;
 //Set fan speed: M106 S<value>
 gCommandsDictionary[G_COMMANDS.SET_FAN_SPEED] = `M106 S%1`;
 //Turn fan off: M107
-gCommandsDictionary[G_COMMANDS.TURNOFF_FAN] = `M107`;
+gCommandsDictionary[G_COMMANDS.TURN_OFF_FAN] = `M107`;
 //Emergency stop: M112
 gCommandsDictionary[G_COMMANDS.EMERGENCY_STOP] = `M112`;
 //Get current position: M114
