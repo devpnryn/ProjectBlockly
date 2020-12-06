@@ -23,18 +23,18 @@ alert(extractGCodes(code))
 }
 
 // User can save the GCode(s) of translated Javascript logic into a file
+// A file named GCodes.txt gets created and downloaded to Browser's default path
 const SaveGCodes=()=>{
-// save G-Codes to a file
 Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
 let code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
 let gcodes = extractGCodes(code)
-// let fs = require('fs')
-// let file = fs.createWriteStream('GCodes.txt')
-// file.on('error', ()=>{})
-// gcodes.forEach((w)=>{file.write(w.join('\n'))})
-// file.end()
+if(gcodes.length === 0) return
+ saveTextAsFile(gcodes.join('\n'))
 }
+
+// Extracts GCode string(s) from the given code
 const extractGCodes=(code) =>{
+// Look out for word 'GCode' in the translated Javascript code
 const regex = /Gcode:(.*)/gm;
 let m;
 let gStream = []
@@ -49,4 +49,33 @@ let gCode = m[1].replace(/[),;,']/g, '').trim()
 gStream.push(gCode)
 }
 return gStream
+}
+
+// a helper function to save data to a file 
+const saveTextAsFile=(gCodes)=>
+{
+    let textToWrite = gCodes
+    let textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
+    let fileNameToSaveAs = "GCodes.txt";
+      let downloadLink = document.createElement("a");
+    downloadLink.download = fileNameToSaveAs;
+    downloadLink.innerHTML = "Download File";
+    if (window.webkitURL != null)
+    {
+        // Chrome allows the link to be clicked
+        // without actually adding it to the DOM.
+        downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+    }
+    else
+    {
+        // Firefox requires the link to be added to the DOM
+        // before it can be clicked.
+        downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+        downloadLink.onclick = destroyClickedElement;
+        downloadLink.style.display = "none";
+        document.body.appendChild(downloadLink);
+    }
+
+    downloadLink.click();
+    document.body.removeChild(downloadLink)
 }

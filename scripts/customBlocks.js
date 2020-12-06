@@ -60,9 +60,8 @@ Blockly.defineBlocksWithJsonArray([{
     var number_y = block.getFieldValue('Y');
     var number_z = block.getFieldValue('Z');
     var number_e = block.getFieldValue('E');
-    // TODO: Assemble Python into code variable.
+    // A word 'GCode:' is added in front of every GCode generation as an identifier
     var code = `Gcode: G1 X${number_x} Y${number_y} Z${number_z} E${number_e}`
-    // TODO: Change ORDER_NONE to the correct strength.
     return [code, Blockly.JavaScript.ORDER_NONE];
   };
   
