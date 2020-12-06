@@ -47,7 +47,12 @@ const extractGCodes = (code) => {
       regex.lastIndex++;
     }
     if (m === null) return;
+
+    // remove unwanted characters and store in array
     let gCode = m[1].replace(/[),;,']/g, "").trim();
+
+    // To create acceptable commenting in gcommands
+    gCode = gCode.replace("//", ";");
     gStream.push(gCode);
   }
   return gStream;
