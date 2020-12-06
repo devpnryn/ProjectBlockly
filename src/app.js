@@ -11,7 +11,8 @@ const showCode=()=> {
 // Generate JavaScript code and display it.
 Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
 let code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-alert(code);
+let sanitizedCode = code.replace(/GCode:/i,'')
+alert(sanitizedCode);
 }
 
 // User can see the GCode(s) of translated Javascript logic
