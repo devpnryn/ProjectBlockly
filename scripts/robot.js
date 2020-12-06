@@ -61,7 +61,7 @@ Blockly.defineBlocksWithJsonArray([{
     var number_z = block.getFieldValue('Z');
     var number_e = block.getFieldValue('E');
     // TODO: Assemble Python into code variable.
-    var code = `G1 [X${number_x}] [Y${number_y}] [Z${number_z}] [E${number_e}]`
+    var code = `G1 X${number_x} Y${number_y} Z${number_z} E${number_e}`
     // TODO: Change ORDER_NONE to the correct strength.
     return [code, Blockly.JavaScript.ORDER_NONE];
   };
