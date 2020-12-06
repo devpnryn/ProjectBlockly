@@ -23,9 +23,8 @@
   <h1><a href="https://developers.google.com/blockly/">Blockly</a> &gt;
   <p>
     <button onclick="showCode()">Show JavaScript</button>
-    <button onclick="runCode()">Run JavaScript</button>
     <button onclick="generateGCode()">Print G-Code Stream </button>
-    <button onclick="generateGCode()">Download G-Code Stream file </button>
+    <button onclick="SaveGCodes()">Download G-Code Stream file </button>
   </p>
 
   <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
@@ -405,26 +404,39 @@
       var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
       alert(code);
     }
-
-    function runCode() {
-      // Generate JavaScript code and run it.
-      window.LoopTrap = 1000;
-      Blockly.JavaScript.INFINITE_LOOP_TRAP =
-          'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
-      var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-      try {
-        eval(code);
-      } catch (e) {
-        alert(e);
-      }
-    }
     function generateGCode(){
               // Generate JavaScript code and display it.
       Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
       var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-
+     alert(extractGCodes(code))
     }
+    function SaveGCodes(){
+      // save G-Codes to a file
+      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+      var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+      let gcodes = extractGCodes(code)
+      // let fs = require('fs')
+      // let file = fs.createWriteStream('GCodes.txt')
+      // file.on('error', ()=>{})
+      // gcodes.forEach((w)=>{file.write(w.join('\n'))})
+      // file.end()
+    }
+    function extractGCodes(code) {
+    const regex = /Gcode:(.*)/gm;
+    let m;
+    let gStream = []
+    while ((m = regex.exec(code)) !== null) {
+        // This is necessary to avoid infinite loops with zero-width matches
+        if (m.index === regex.lastIndex) {
+            regex.lastIndex++;
+        }
+        if (m === null)
+            return;
+        let gCode = m[1].replace(/[),;,']/g, '').trim()
+        gStream.push(gCode)
+    }
+    return gStream
+}
   </script>
 
 </body>

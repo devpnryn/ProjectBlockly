@@ -61,13 +61,13 @@ Blockly.defineBlocksWithJsonArray([{
     var number_z = block.getFieldValue('Z');
     var number_e = block.getFieldValue('E');
     // TODO: Assemble Python into code variable.
-    var code = `G1 X${number_x} Y${number_y} Z${number_z} E${number_e}`
+    var code = `Gcode: G1 X${number_x} Y${number_y} Z${number_z} E${number_e}`
     // TODO: Change ORDER_NONE to the correct strength.
     return [code, Blockly.JavaScript.ORDER_NONE];
   };
   
-  Blockly.Python['robot_move'] = function(block) {
-    var value_position = Blockly.Python.valueToCode(block, 'position', Blockly.Python.ORDER_ATOMIC);
+  Blockly.JavaScript['robot_move'] = function(block) {
+    var value_position = Blockly.JavaScript.valueToCode(block, 'position', Blockly.JavaScript.ORDER_ATOMIC);
     // TODO: Assemble Python into code variable.
     var code = '...\n';
     return code;
