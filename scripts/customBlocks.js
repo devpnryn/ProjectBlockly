@@ -1,6 +1,6 @@
 Blockly.defineBlocksWithJsonArray([
   {
-    type: "robot_position",
+    type: "movement",
     message0: "X %1 %2 Y %3 %4 Z %5 %6 E %7",
     args0: [
       {
@@ -57,7 +57,7 @@ Blockly.defineBlocksWithJsonArray([
   },
 ]);
 
-Blockly.JavaScript["robot_position"] = function (block) {
+Blockly.JavaScript["movement"] = function (block) {
   var number_x = block.getFieldValue("X");
   var number_y = block.getFieldValue("Y");
   var number_z = block.getFieldValue("Z");
