@@ -1,5 +1,6 @@
 /*
 These are often used gcommands
+reference used is https://github.com/KevinOConnor/klipper/blob/master/docs/G-Codes.md
 */
 const G_COMMANDS = {
   MOVE: "Move",
@@ -130,26 +131,27 @@ Blockly.JavaScript[G_COMMANDS.SET_POSITION] = (block) => {
   let number_z = block.getFieldValue("Z");
   let number_e = block.getFieldValue("E");
   let args = [number_x, number_y, number_z, number_e];
-  // A word 'GCode:' is added in front of every GCode generation as an identifier
-  var code = `Gcode: ${fetchGCommand(G_COMMANDS.SET_POSITION, args)} // ${G_COMMANDS.SET_POSITION}`;
+  
+  var code = fetchGCommand(G_COMMANDS.SET_POSITION, args)
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-/* Construct respective command using dictionary  */
-const fetchGCommand = (type, args) => {
+/* Helper function to construct respective command using dictionary  
+// A word 'GCode:' is added in front of every GCode generation as an identifier */
+const fetchGCommand = (blockType, args) => {
   // do nothing if key doesn't exist
-  if (!(type in gCommandsDictionary)) return;
+  if (!(blockType in gCommandsDictionary)) return;
 
   let argCount = 0;
-  let gCommand = gCommandsDictionary[type];
+  let gCommand = gCommandsDictionary[blockType];
 
   // when command takes no arguments
-  if (args.length == 0) return gCommand;
+  if (args.length == 0) return `Gcode: ${gCommand} // ${blockType}`;
 
   // when command takes at least one argument
   while (argCount <= args.length) {
     gCommand = gCommand.replace(`%${argCount + 1}`, args[argCount]);
     argCount++;
   }
-  return gCommand;
+  return `Gcode: ${gCommand} // ${blockType}`
 };

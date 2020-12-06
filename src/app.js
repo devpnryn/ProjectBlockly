@@ -18,7 +18,7 @@ const showCode = () => {
 };
 
 // User can see the GCode(s) of translated Javascript logic
-const generateGCode = () => {
+const printGCode = () => {
   // Generate JavaScript code and display it.
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   let code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
@@ -27,7 +27,7 @@ const generateGCode = () => {
 
 // User can save the GCode(s) of translated Javascript logic into a file
 // A file named GCodes.txt gets created and downloaded to Browser's default path
-const SaveGCodes = () => {
+const downLoadGCode = () => {
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   let code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
   let gcodes = extractGCodes(code);
