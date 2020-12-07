@@ -392,6 +392,14 @@ Blockly.JavaScript[G_COMMANDS.SET_BED_TEMPERATURE_WITH_WAIT] = function(block) {
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
+Blockly.JavaScript[G_COMMANDS.SET_FAN_SPEED] = function(block) {
+  var number_s = block.getFieldValue('S');
+  let args = [number_s];
+  
+  var code = fetchGCommand(G_COMMANDS.SET_FAN_SPEED, args)
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
 
 
 /* Helper function to construct respective command using dictionary  
@@ -404,12 +412,12 @@ const fetchGCommand = (blockType, args) => {
   let gCommand = gCommandsDictionary[blockType];
 
   // when command takes no arguments
-  if (args.length == 0) return `Gcode: ${gCommand} // ${blockType}`;
+  if (args.length == 0) return `"${gCommand}"`;
 
   // when command takes at least one argument
   while (argCount <= args.length) {
     gCommand = gCommand.replace(`%${argCount + 1}`, args[argCount]);
     argCount++;
   }
-  return `Gcode: ${gCommand} // ${blockType}`
+  return `"${gCommand}"`
 };

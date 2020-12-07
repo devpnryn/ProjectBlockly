@@ -7,59 +7,30 @@ Blockly.Xml.domToWorkspace(
   document.getElementById("startBlocks"),
   demoWorkspace
 );
-
+// to store the commands while executing the code
+let totalGCodes=[]
 // User can see the Blockly code in Javascript
 const showCode = () => {
-  // Generate JavaScript code and display it.
-  Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-  let code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-  let sanitizedCode = code.replace(/GCode:/i, "");
-  alert(sanitizedCode);
+confirm(getJSCodeFromWorkspace())
 };
 
 // User can see the GCode(s) of translated Javascript logic
 const printGCode = () => {
-  // Generate JavaScript code and display it.
-  Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-  let code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-  alert(extractGCodes(code));
+  evaluateJsCode()
+  confirm(totalGCodes.join("\n"))
+  totalGCodes=[]// reset the array before another btn click
 };
 
 // User can save the GCode(s) of translated Javascript logic into a file
 // A file named GCodes.txt gets created and downloaded to Browser's default path
 const downLoadGCode = () => {
-  Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-  let code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-  let gcodes = extractGCodes(code);
-  if (gcodes.length === 0) return;
-  saveTextAsFile(gcodes.join("\n"));
+  evaluateJsCode()
+  saveToFile(totalGCodes.join("\n"));
+  totalGCodes=[];// reset the array before another btn click
 };
-
-// Extracts GCode string(s) from the given code
-const extractGCodes = (code) => {
-  // Look out for word 'GCode' in the translated Javascript code
-  const regex = /Gcode:(.*)/gm;
-  let m;
-  let gStream = [];
-  while ((m = regex.exec(code)) !== null) {
-    // This is necessary to avoid infinite loops with zero-width matches
-    if (m.index === regex.lastIndex) {
-      regex.lastIndex++;
-    }
-    if (m === null) return;
-
-    // remove unwanted characters and store in array
-    let gCode = m[1].replace(/[),;,']/g, "").trim();
-
-    // To create acceptable commenting in gcommands
-    gCode = gCode.replace("//", ";");
-    gStream.push(gCode);
-  }
-  return gStream;
-};
-
+/** Helper functions **/
 // a helper function to save data to a file
-const saveTextAsFile = (gCodes) => {
+const saveToFile = (gCodes) => {
   let textToWrite = gCodes;
   let textFileAsBlob = new Blob([textToWrite], { type: "text/plain" });
   let fileNameToSaveAs = "GCodes.txt";
@@ -82,3 +53,26 @@ const saveTextAsFile = (gCodes) => {
   downloadLink.click();
   document.body.removeChild(downloadLink);
 };
+
+// to evaluate generated javascript code
+const evaluateJsCode = ()=>{
+    let code = getJSCodeFromWorkspace()
+    // not so safe to use this eval() here.. need to change later 
+    try {
+      eval(code);
+    } catch (e) {
+      confirm(e);
+    }
+}
+
+// generate the javascript code from workspace
+const getJSCodeFromWorkspace = ()=>{
+  // Generate JavaScript code and display it.
+  Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+  return Blockly.JavaScript.workspaceToCode(demoWorkspace);
+}
+
+// overriding the window.alert method to extract the data from it
+window.alert = (txt)=>{
+  totalGCodes.push(txt)
+}
