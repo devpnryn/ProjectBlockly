@@ -80,51 +80,250 @@ gCommandsDictionary[G_COMMANDS.GET_FIRMWARE_VERSION] = `M115`;
 Don't change anything here.
 In Future, other blockly definitions will be included here.
 Note: Block names should match with constants */
-Blockly.defineBlocksWithJsonArray([
-  {
-    type: G_COMMANDS.SET_POSITION,
-    message0: "X %1 %2 Y %3 %4 Z %5 %6 E %7",
-    args0: [
-      {
-        type: "field_number",
-        name: "X",
-        value: 0,
-      },
-      {
-        type: "input_dummy",
-      },
-      {
-        type: "field_number",
-        name: "Y",
-        value: 0,
-      },
-      {
-        type: "input_dummy",
-      },
-      {
-        type: "field_number",
-        name: "Z",
-        value: 0,
-      },
-      {
-        type: "input_dummy",
-      },
-      {
-        type: "field_number",
-        name: "E",
-        value: 0,
-      },
-    ],
-    inputsInline: true,
-    output: null,
-    colour: 260,
-    tooltip: "",
-    helpUrl: "",
-  },
-]);
+Blockly.Blocks[G_COMMANDS.MOVE] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(G_COMMANDS.MOVE);
+    this.appendDummyInput()
+        .appendField("X")
+        .appendField(new Blockly.FieldNumber(0), "X");
+    this.appendDummyInput()
+        .appendField("Y")
+        .appendField(new Blockly.FieldNumber(0), "Y");
+    this.appendDummyInput()
+        .appendField("Z")
+        .appendField(new Blockly.FieldNumber(0), "Z");
+    this.appendDummyInput()
+        .appendField("E")
+        .appendField(new Blockly.FieldNumber(0), "E");
+    this.appendDummyInput()
+        .appendField("F")
+        .appendField(new Blockly.FieldNumber(0), "F");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(230);
+ this.setTooltip(G_COMMANDS.MOVE);
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks[G_COMMANDS.DWELL] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(G_COMMANDS.DWELL);
+    this.appendDummyInput()
+        .appendField("P")
+        .appendField(new Blockly.FieldNumber(0), "P");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(230);
+ this.setTooltip(G_COMMANDS.DWELL);
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks[G_COMMANDS.MOVE_TO_ORIGIN] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(G_COMMANDS.MOVE_TO_ORIGIN);
+    this.appendDummyInput()
+        .appendField("X")
+        .appendField(new Blockly.FieldNumber(0), "X");
+    this.appendDummyInput()
+    .appendField("Y")
+    .appendField(new Blockly.FieldNumber(0), "Y");
+    this.appendDummyInput()
+    .appendField("Z")
+    .appendField(new Blockly.FieldNumber(0), "Z");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(230);
+ this.setTooltip(G_COMMANDS.MOVE_TO_ORIGIN);
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks[G_COMMANDS.SET_POSITION] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(G_COMMANDS.SET_POSITION);
+    this.appendDummyInput()
+        .appendField("X")
+        .appendField(new Blockly.FieldNumber(0), "X");
+    this.appendDummyInput()
+        .appendField("Y")
+        .appendField(new Blockly.FieldNumber(0), "Y");
+    this.appendDummyInput()
+        .appendField("Z")
+        .appendField(new Blockly.FieldNumber(0), "Z");
+    this.appendDummyInput()
+        .appendField("E")
+        .appendField(new Blockly.FieldNumber(0), "E");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(230);
+ this.setTooltip(G_COMMANDS.SET_POSITION);
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks[G_COMMANDS.SET_SPEED_FACTOR_OVERRIDE] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(G_COMMANDS.SET_SPEED_FACTOR_OVERRIDE);
+    this.appendDummyInput()
+        .appendField("S")
+        .appendField(new Blockly.FieldNumber(0), "S");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(230);
+ this.setTooltip(G_COMMANDS.SET_SPEED_FACTOR_OVERRIDE);
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks[G_COMMANDS.SET_EXTRUDE_FACTOR_OVERRIDE] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(G_COMMANDS.SET_EXTRUDE_FACTOR_OVERRIDE);
+    this.appendDummyInput()
+        .appendField("S")
+        .appendField(new Blockly.FieldNumber(0), "S");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(230);
+ this.setTooltip(G_COMMANDS.SET_EXTRUDE_FACTOR_OVERRIDE);
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks[G_COMMANDS.SET_ACCELERATION] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(G_COMMANDS.SET_ACCELERATION);
+    this.appendDummyInput()
+        .appendField("S")
+        .appendField(new Blockly.FieldNumber(0), "S");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(230);
+ this.setTooltip(G_COMMANDS.SET_ACCELERATION);
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks[G_COMMANDS.SET_EXTRUDER_TEMPERATURE] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(G_COMMANDS.SET_EXTRUDER_TEMPERATURE);
+        this.appendDummyInput()
+        .appendField("T")
+        .appendField(new Blockly.FieldNumber(0), "T");
+    this.appendDummyInput()
+        .appendField("S")
+        .appendField(new Blockly.FieldNumber(0), "S");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(230);
+ this.setTooltip(G_COMMANDS.SET_EXTRUDER_TEMPERATURE);
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks[G_COMMANDS.SET_EXTRUDER_TEMPERATURE_WITH_WAIT] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(G_COMMANDS.SET_EXTRUDER_TEMPERATURE_WITH_WAIT);
+        this.appendDummyInput()
+        .appendField("T")
+        .appendField(new Blockly.FieldNumber(0), "T");
+    this.appendDummyInput()
+        .appendField("S")
+        .appendField(new Blockly.FieldNumber(0), "S");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(230);
+ this.setTooltip(G_COMMANDS.SET_EXTRUDER_TEMPERATURE_WITH_WAIT);
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks[G_COMMANDS.SET_BED_TEMPERATURE] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(G_COMMANDS.SET_BED_TEMPERATURE);
+        this.appendDummyInput()
+        .appendField("S")
+        .appendField(new Blockly.FieldNumber(0), "S");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(230);
+ this.setTooltip(G_COMMANDS.SET_BED_TEMPERATURE);
+ this.setHelpUrl("");
+  }
+};
+Blockly.Blocks[G_COMMANDS.SET_BED_TEMPERATURE_WITH_WAIT] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(G_COMMANDS.SET_BED_TEMPERATURE_WITH_WAIT);
+        this.appendDummyInput()
+        .appendField("S")
+        .appendField(new Blockly.FieldNumber(0), "S");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(230);
+ this.setTooltip(G_COMMANDS.SET_BED_TEMPERATURE_WITH_WAIT);
+ this.setHelpUrl("");
+  }
+};
+Blockly.Blocks[G_COMMANDS.SET_FAN_SPEED] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(G_COMMANDS.SET_FAN_SPEED);
+        this.appendDummyInput()
+        .appendField("S")
+        .appendField(new Blockly.FieldNumber(0), "S");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(230);
+ this.setTooltip(G_COMMANDS.SET_FAN_SPEED);
+ this.setHelpUrl("");
+  }
+};
 
 /* Custom Block SetPosition Javascript code 
 Note: Block names should match with constants*/
+Blockly.JavaScript[G_COMMANDS.MOVE] = function(block) {
+  var number_x = block.getFieldValue('X');
+  var number_y = block.getFieldValue('Y');
+  var number_z = block.getFieldValue('Z');
+  var number_e = block.getFieldValue('E');
+  var number_f = block.getFieldValue('F');
+  let args = [number_x, number_y, number_z, number_e, number_f];
+  
+  var code = fetchGCommand(G_COMMANDS.MOVE, args)
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+Blockly.JavaScript[G_COMMANDS.DWELL] = function(block) {
+  var number_p = block.getFieldValue('P');
+  let args = [number_p];
+  
+  var code = fetchGCommand(G_COMMANDS.DWELL, args)
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+Blockly.JavaScript[G_COMMANDS.MOVE_TO_ORIGIN] = function(block) {
+  var number_x = block.getFieldValue('X');
+  var number_y = block.getFieldValue('Y');
+  var number_z = block.getFieldValue('Z');
+
+  let args = [number_x, number_y, number_z];
+  
+  var code = fetchGCommand(G_COMMANDS.MOVE_TO_ORIGIN, args)
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
 Blockly.JavaScript[G_COMMANDS.SET_POSITION] = (block) => {
   let number_x = block.getFieldValue("X");
   let number_y = block.getFieldValue("Y");
@@ -135,6 +334,65 @@ Blockly.JavaScript[G_COMMANDS.SET_POSITION] = (block) => {
   var code = fetchGCommand(G_COMMANDS.SET_POSITION, args)
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
+Blockly.JavaScript[G_COMMANDS.SET_SPEED_FACTOR_OVERRIDE] = function(block) {
+  var number_s = block.getFieldValue('S');
+  let args = [number_s];
+  
+  var code = fetchGCommand(G_COMMANDS.SET_SPEED_FACTOR_OVERRIDE, args)
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+Blockly.JavaScript[G_COMMANDS.SET_ACCELERATION] = function(block) {
+  var number_s = block.getFieldValue('S');
+  let args = [number_s];
+  
+  var code = fetchGCommand(G_COMMANDS.SET_ACCELERATION, args)
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+Blockly.JavaScript[G_COMMANDS.SET_EXTRUDE_FACTOR_OVERRIDE] = function(block) {
+  var number_s = block.getFieldValue('S');
+  let args = [number_s];
+  
+  var code = fetchGCommand(G_COMMANDS.SET_EXTRUDE_FACTOR_OVERRIDE, args)
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+Blockly.JavaScript[G_COMMANDS.SET_EXTRUDER_TEMPERATURE] = function(block) {
+  var number_t = block.getFieldValue('T');
+  var number_s = block.getFieldValue('S');
+  let args = [number_t, number_s];
+  
+  var code = fetchGCommand(G_COMMANDS.SET_EXTRUDER_TEMPERATURE, args)
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+Blockly.JavaScript[G_COMMANDS.SET_EXTRUDER_TEMPERATURE_WITH_WAIT] = function(block) {
+  var number_t = block.getFieldValue('T');
+  var number_s = block.getFieldValue('S');
+  let args = [number_t, number_s];
+  
+  var code = fetchGCommand(G_COMMANDS.SET_EXTRUDER_TEMPERATURE_WITH_WAIT, args)
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+Blockly.JavaScript[G_COMMANDS.SET_BED_TEMPERATURE] = function(block) {
+  var number_s = block.getFieldValue('S');
+  let args = [number_s];
+  
+  var code = fetchGCommand(G_COMMANDS.SET_BED_TEMPERATURE, args)
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+Blockly.JavaScript[G_COMMANDS.SET_BED_TEMPERATURE_WITH_WAIT] = function(block) {
+  var number_s = block.getFieldValue('S');
+  let args = [number_s];
+  
+  var code = fetchGCommand(G_COMMANDS.SET_BED_TEMPERATURE_WITH_WAIT, args)
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 
 /* Helper function to construct respective command using dictionary  
 // A word 'GCode:' is added in front of every GCode generation as an identifier */
