@@ -3,22 +3,22 @@ let demoWorkspace = Blockly.inject("blocklyDiv", {
   media: "../media/",
   toolbox: document.getElementById("toolbox"),
 });
-Blockly.Xml.domToWorkspace(
-  document.getElementById("startBlocks"),
-  demoWorkspace
-);
+// Blockly.Xml.domToWorkspace(
+//   document.getElementById("startBlocks"),
+//   demoWorkspace
+// );
 // to store the commands while executing the code
-let totalGCodes=[]
+let totalGCodes = []
 // User can see the Blockly code in Javascript
 const showCode = () => {
-confirm(getJSCodeFromWorkspace())
+  confirm(getJSCodeFromWorkspace())
 };
 
 // User can see the GCode(s) of translated Javascript logic
 const printGCode = () => {
   evaluateJsCode()
   confirm(totalGCodes.join("\n"))
-  totalGCodes=[]// reset the array before another btn click
+  totalGCodes = []// reset the array before another btn click
 };
 
 // User can save the GCode(s) of translated Javascript logic into a file
@@ -26,7 +26,7 @@ const printGCode = () => {
 const downLoadGCode = () => {
   evaluateJsCode()
   saveToFile(totalGCodes.join("\n"));
-  totalGCodes=[];// reset the array before another btn click
+  totalGCodes = [];// reset the array before another btn click
 };
 /** Helper functions **/
 // a helper function to save data to a file
@@ -55,24 +55,24 @@ const saveToFile = (gCodes) => {
 };
 
 // to evaluate generated javascript code
-const evaluateJsCode = ()=>{
-    let code = getJSCodeFromWorkspace()
-    // not so safe to use this eval() here.. need to change later 
-    try {
-      eval(code);
-    } catch (e) {
-      confirm(e);
-    }
+const evaluateJsCode = () => {
+  let code = getJSCodeFromWorkspace()
+  // not so safe to use this eval() here.. need to change later 
+  try {
+    eval(code);
+  } catch (e) {
+    confirm(e);
+  }
 }
 
 // generate the javascript code from workspace
-const getJSCodeFromWorkspace = ()=>{
+const getJSCodeFromWorkspace = () => {
   // Generate JavaScript code and display it.
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   return Blockly.JavaScript.workspaceToCode(demoWorkspace);
 }
 
 // overriding the window.alert method to extract the data from it
-window.alert = (txt)=>{
+window.alert = (txt) => {
   totalGCodes.push(txt)
 }
