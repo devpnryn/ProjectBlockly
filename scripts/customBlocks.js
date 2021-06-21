@@ -4,7 +4,7 @@ reference used is https://github.com/KevinOConnor/klipper/blob/master/docs/G-Cod
 */
 const G_COMMANDS = {
   MOVE: "Move",
-  MOVEUPDOWN:"MoveUpandDownr",
+  MOVEUPDOWN: "MoveUpandDownr",
   DWELL: "Dwell",
   MOVE_TO_ORIGIN: "MoveToOrigin",
   TURN_OFF_MOTORS: "TurnOffMotors",
@@ -85,361 +85,361 @@ Don't change anything here.
 In Future, other blockly definitions will be included here.
 Note: Block names should match with constants */
 Blockly.Blocks[G_COMMANDS.MOVE] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField(G_COMMANDS.MOVE);
+      .appendField(G_COMMANDS.MOVE);
     this.appendDummyInput()
-        .appendField("X")
-        .appendField(new Blockly.FieldNumber(0), "X");
+      .appendField("X")
+      .appendField(new Blockly.FieldNumber(0), "X");
     this.appendDummyInput()
-        .appendField("Y")
-        .appendField(new Blockly.FieldNumber(0), "Y");
+      .appendField("Y")
+      .appendField(new Blockly.FieldNumber(0), "Y");
     this.appendDummyInput()
-        .appendField("Z")
-        .appendField(new Blockly.FieldNumber(0), "Z");
+      .appendField("Z")
+      .appendField(new Blockly.FieldNumber(0), "Z");
     this.appendDummyInput()
-        .appendField("E")
-        .appendField(new Blockly.FieldNumber(0), "E");
+      .appendField("E")
+      .appendField(new Blockly.FieldNumber(0), "E");
     this.appendDummyInput()
-        .appendField("F")
-        .appendField(new Blockly.FieldNumber(0), "F");
+      .appendField("F")
+      .appendField(new Blockly.FieldNumber(0), "F");
     this.setInputsInline(true);
     this.setOutput(true, null);
     this.setColour(230);
- this.setTooltip(G_COMMANDS.MOVE);
- this.setHelpUrl("");
+    this.setTooltip(G_COMMANDS.MOVE);
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks[G_COMMANDS.DWELL] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField(G_COMMANDS.DWELL);
+      .appendField(G_COMMANDS.DWELL);
     this.appendDummyInput()
-        .appendField("P")
-        .appendField(new Blockly.FieldNumber(0), "P");
+      .appendField("P")
+      .appendField(new Blockly.FieldNumber(0), "P");
     this.setInputsInline(true);
     this.setOutput(true, null);
     this.setColour(230);
- this.setTooltip(G_COMMANDS.DWELL);
- this.setHelpUrl("");
+    this.setTooltip(G_COMMANDS.DWELL);
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks[G_COMMANDS.MOVE_TO_ORIGIN] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField(G_COMMANDS.MOVE_TO_ORIGIN);
+      .appendField(G_COMMANDS.MOVE_TO_ORIGIN);
     this.appendDummyInput()
-        .appendField("X")
-        .appendField(new Blockly.FieldNumber(0), "X");
+      .appendField("X")
+      .appendField(new Blockly.FieldNumber(0), "X");
     this.appendDummyInput()
-    .appendField("Y")
-    .appendField(new Blockly.FieldNumber(0), "Y");
+      .appendField("Y")
+      .appendField(new Blockly.FieldNumber(0), "Y");
     this.appendDummyInput()
-    .appendField("Z")
-    .appendField(new Blockly.FieldNumber(0), "Z");
+      .appendField("Z")
+      .appendField(new Blockly.FieldNumber(0), "Z");
     this.setInputsInline(true);
     this.setOutput(true, null);
     this.setColour(230);
- this.setTooltip(G_COMMANDS.MOVE_TO_ORIGIN);
- this.setHelpUrl("");
+    this.setTooltip(G_COMMANDS.MOVE_TO_ORIGIN);
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks[G_COMMANDS.SET_POSITION] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField(G_COMMANDS.SET_POSITION);
+      .appendField(G_COMMANDS.SET_POSITION);
     this.appendDummyInput()
-        .appendField("X")
-        .appendField(new Blockly.FieldNumber(0), "X");
+      .appendField("X")
+      .appendField(new Blockly.FieldNumber(0), "X");
     this.appendDummyInput()
-        .appendField("Y")
-        .appendField(new Blockly.FieldNumber(0), "Y");
+      .appendField("Y")
+      .appendField(new Blockly.FieldNumber(0), "Y");
     this.appendDummyInput()
-        .appendField("Z")
-        .appendField(new Blockly.FieldNumber(0), "Z");
+      .appendField("Z")
+      .appendField(new Blockly.FieldNumber(0), "Z");
     this.appendDummyInput()
-        .appendField("E")
-        .appendField(new Blockly.FieldNumber(0), "E");
+      .appendField("E")
+      .appendField(new Blockly.FieldNumber(0), "E");
     this.setInputsInline(true);
     this.setOutput(true, null);
     this.setColour(230);
- this.setTooltip(G_COMMANDS.SET_POSITION);
- this.setHelpUrl("");
+    this.setTooltip(G_COMMANDS.SET_POSITION);
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks[G_COMMANDS.SET_SPEED_FACTOR_OVERRIDE] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField(G_COMMANDS.SET_SPEED_FACTOR_OVERRIDE);
+      .appendField(G_COMMANDS.SET_SPEED_FACTOR_OVERRIDE);
     this.appendDummyInput()
-        .appendField("S")
-        .appendField(new Blockly.FieldNumber(0), "S");
+      .appendField("S")
+      .appendField(new Blockly.FieldNumber(0), "S");
     this.setInputsInline(true);
     this.setOutput(true, null);
     this.setColour(230);
- this.setTooltip(G_COMMANDS.SET_SPEED_FACTOR_OVERRIDE);
- this.setHelpUrl("");
+    this.setTooltip(G_COMMANDS.SET_SPEED_FACTOR_OVERRIDE);
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks[G_COMMANDS.SET_EXTRUDE_FACTOR_OVERRIDE] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField(G_COMMANDS.SET_EXTRUDE_FACTOR_OVERRIDE);
+      .appendField(G_COMMANDS.SET_EXTRUDE_FACTOR_OVERRIDE);
     this.appendDummyInput()
-        .appendField("S")
-        .appendField(new Blockly.FieldNumber(0), "S");
+      .appendField("S")
+      .appendField(new Blockly.FieldNumber(0), "S");
     this.setInputsInline(true);
     this.setOutput(true, null);
     this.setColour(230);
- this.setTooltip(G_COMMANDS.SET_EXTRUDE_FACTOR_OVERRIDE);
- this.setHelpUrl("");
+    this.setTooltip(G_COMMANDS.SET_EXTRUDE_FACTOR_OVERRIDE);
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks[G_COMMANDS.SET_ACCELERATION] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField(G_COMMANDS.SET_ACCELERATION);
+      .appendField(G_COMMANDS.SET_ACCELERATION);
     this.appendDummyInput()
-        .appendField("S")
-        .appendField(new Blockly.FieldNumber(0), "S");
+      .appendField("S")
+      .appendField(new Blockly.FieldNumber(0), "S");
     this.setInputsInline(true);
     this.setOutput(true, null);
     this.setColour(230);
- this.setTooltip(G_COMMANDS.SET_ACCELERATION);
- this.setHelpUrl("");
+    this.setTooltip(G_COMMANDS.SET_ACCELERATION);
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks[G_COMMANDS.SET_EXTRUDER_TEMPERATURE] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField(G_COMMANDS.SET_EXTRUDER_TEMPERATURE);
-        this.appendDummyInput()
-        .appendField("T")
-        .appendField(new Blockly.FieldNumber(0), "T");
+      .appendField(G_COMMANDS.SET_EXTRUDER_TEMPERATURE);
     this.appendDummyInput()
-        .appendField("S")
-        .appendField(new Blockly.FieldNumber(0), "S");
+      .appendField("T")
+      .appendField(new Blockly.FieldNumber(0), "T");
+    this.appendDummyInput()
+      .appendField("S")
+      .appendField(new Blockly.FieldNumber(0), "S");
     this.setInputsInline(true);
     this.setOutput(true, null);
     this.setColour(230);
- this.setTooltip(G_COMMANDS.SET_EXTRUDER_TEMPERATURE);
- this.setHelpUrl("");
+    this.setTooltip(G_COMMANDS.SET_EXTRUDER_TEMPERATURE);
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks[G_COMMANDS.SET_EXTRUDER_TEMPERATURE_WITH_WAIT] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField(G_COMMANDS.SET_EXTRUDER_TEMPERATURE_WITH_WAIT);
-        this.appendDummyInput()
-        .appendField("T")
-        .appendField(new Blockly.FieldNumber(0), "T");
+      .appendField(G_COMMANDS.SET_EXTRUDER_TEMPERATURE_WITH_WAIT);
     this.appendDummyInput()
-        .appendField("S")
-        .appendField(new Blockly.FieldNumber(0), "S");
+      .appendField("T")
+      .appendField(new Blockly.FieldNumber(0), "T");
+    this.appendDummyInput()
+      .appendField("S")
+      .appendField(new Blockly.FieldNumber(0), "S");
     this.setInputsInline(true);
     this.setOutput(true, null);
     this.setColour(230);
- this.setTooltip(G_COMMANDS.SET_EXTRUDER_TEMPERATURE_WITH_WAIT);
- this.setHelpUrl("");
+    this.setTooltip(G_COMMANDS.SET_EXTRUDER_TEMPERATURE_WITH_WAIT);
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks[G_COMMANDS.SET_BED_TEMPERATURE] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField(G_COMMANDS.SET_BED_TEMPERATURE);
-        this.appendDummyInput()
-        .appendField("S")
-        .appendField(new Blockly.FieldNumber(0), "S");
+      .appendField(G_COMMANDS.SET_BED_TEMPERATURE);
+    this.appendDummyInput()
+      .appendField("S")
+      .appendField(new Blockly.FieldNumber(0), "S");
     this.setInputsInline(true);
     this.setOutput(true, null);
     this.setColour(230);
- this.setTooltip(G_COMMANDS.SET_BED_TEMPERATURE);
- this.setHelpUrl("");
+    this.setTooltip(G_COMMANDS.SET_BED_TEMPERATURE);
+    this.setHelpUrl("");
   }
 };
 Blockly.Blocks[G_COMMANDS.SET_BED_TEMPERATURE_WITH_WAIT] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField(G_COMMANDS.SET_BED_TEMPERATURE_WITH_WAIT);
-        this.appendDummyInput()
-        .appendField("S")
-        .appendField(new Blockly.FieldNumber(0), "S");
+      .appendField(G_COMMANDS.SET_BED_TEMPERATURE_WITH_WAIT);
+    this.appendDummyInput()
+      .appendField("S")
+      .appendField(new Blockly.FieldNumber(0), "S");
     this.setInputsInline(true);
     this.setOutput(true, null);
     this.setColour(230);
- this.setTooltip(G_COMMANDS.SET_BED_TEMPERATURE_WITH_WAIT);
- this.setHelpUrl("");
+    this.setTooltip(G_COMMANDS.SET_BED_TEMPERATURE_WITH_WAIT);
+    this.setHelpUrl("");
   }
 };
 Blockly.Blocks[G_COMMANDS.SET_FAN_SPEED] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField(G_COMMANDS.SET_FAN_SPEED);
-        this.appendDummyInput()
-        .appendField("S")
-        .appendField(new Blockly.FieldNumber(0), "S");
+      .appendField(G_COMMANDS.SET_FAN_SPEED);
+    this.appendDummyInput()
+      .appendField("S")
+      .appendField(new Blockly.FieldNumber(0), "S");
     this.setInputsInline(true);
     this.setOutput(true, null);
     this.setColour(230);
- this.setTooltip(G_COMMANDS.SET_FAN_SPEED);
- this.setHelpUrl("");
+    this.setTooltip(G_COMMANDS.SET_FAN_SPEED);
+    this.setHelpUrl("");
   }
 };
 
 /***************************************************************************************************************************************************************/
 /* Name: centrifugation.js																																	   */
 /* Developer: Jes�s Irimia								 																									   */
-/* Function: Special function of centrifugate. Include special inputs for the centrifugate function.						                                   */	
+/* Function: Special function of centrifugate. Include special inputs for the centrifugate function.						                                   */
 /*																																							   */
 /*																																				               */
-/***************************************************************************************************************************************************************/		
+/***************************************************************************************************************************************************************/
 /***************************************************************************************************************************************************************/
 Blockly.Blocks['centrifugation'] = {
-	
-	init: function() {
-		
-		/*Usual initialization of a common block*/
-		this.setInputsInline(false);
-		this.setPreviousStatement(true);
-		this.setNextStatement(true);
-		this.setColour(120);
-		
-		//Creating inputs.
-		this.appendDummyInput()
-			.setAlign(Blockly.ALIGN_CENTRE)
-			.appendField("CENTRIFUGATION")
-		this.setTooltip('');
-		
-		this.appendValueInput("source")
-		   // .setCheck("containerCheck")
-		    .setAlign(Blockly.ALIGN_RIGHT)
-		    .appendField("container input");
-		    
-		this.appendDummyInput()
-		    .setAlign(Blockly.ALIGN_RIGHT)
-		    .appendField("speed")
-		    .appendField(new Blockly.FieldTextInput("0", Blockly.FieldTextInput.numberValidator), "SPEED")
-		    .appendField(" rpm");
-		this.appendDummyInput()
-		    .setAlign(Blockly.ALIGN_RIGHT)
-		    .appendField("duration")
-		    .appendField(new Blockly.FieldTextInput("0", Blockly.FieldTextInput.numberValidator), "DURATION")
-		    .appendField(new Blockly.FieldDropdown([["Minutes", "minute"], ["Millisecond", "millisecond"], ["Seconds", "second"], ["Hours", "hour"]]), "Unit_Time");
-		this.appendDummyInput()
-		    .setAlign(Blockly.ALIGN_RIGHT)
-		    .appendField("time of operation")
-		    .appendField(new Blockly.FieldTextInput("0", Blockly.FieldTextInput.numberValidator), "timeOfOperation");
-		this.appendDummyInput()
-		    .setAlign(Blockly.ALIGN_RIGHT)
-		    .appendField("Temperature")
-		    .appendField(new Blockly.FieldTextInput("---", Blockly.FieldTextInput.numberValidator), "TEMPERATURE")
-		    .appendField(new Blockly.FieldDropdown([["Celsius", "celsius"], ["Kelvin", "kelvin"]]), "Unit_Temp");          
+
+  init: function () {
+
+    /*Usual initialization of a common block*/
+    this.setInputsInline(false);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(120);
+
+    //Creating inputs.
+    this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_CENTRE)
+      .appendField("CENTRIFUGATION")
+    this.setTooltip('');
+
+    this.appendValueInput("source")
+      // .setCheck("containerCheck")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("container input");
+
+    this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("speed")
+      .appendField(new Blockly.FieldTextInput("0", Blockly.FieldTextInput.numberValidator), "SPEED")
+      .appendField(" rpm");
+    this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("duration")
+      .appendField(new Blockly.FieldTextInput("0", Blockly.FieldTextInput.numberValidator), "DURATION")
+      .appendField(new Blockly.FieldDropdown([["Minutes", "minute"], ["Millisecond", "millisecond"], ["Seconds", "second"], ["Hours", "hour"]]), "Unit_Time");
+    this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("time of operation")
+      .appendField(new Blockly.FieldTextInput("0", Blockly.FieldTextInput.numberValidator), "timeOfOperation");
+    this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Temperature")
+      .appendField(new Blockly.FieldTextInput("---", Blockly.FieldTextInput.numberValidator), "TEMPERATURE")
+      .appendField(new Blockly.FieldDropdown([["Celsius", "celsius"], ["Kelvin", "kelvin"]]), "Unit_Temp");
   }
 };
 
 Blockly.Blocks['dipcoating'] = {
-	
-	init: function() {
-		
-		/*Usual initialization of a common block*/
-		this.setInputsInline(false);
-		//this.setPreviousStatement(true);
-	//	this.setNextStatement(true);
-  
-     this.setOutput(true, null);
-		this.setColour(220);
-		
-		//Creating inputs.
-		this.appendDummyInput()
-			.setAlign(Blockly.ALIGN_CENTRE)
-			.appendField("DIP COATING")
-		this.setTooltip('dipcoating');
-		
-		    
-		this.appendDummyInput()
-		    .setAlign(Blockly.ALIGN_RIGHT)
-		    .appendField("Direction")
-		   // .appendField(new Blockly.FieldTextInput("Direction")
-        .appendField(new Blockly.FieldDropdown([["Up", "+"], ["Down", "-"]]), "Unit_Direction");
 
-		this.appendDummyInput()
-		    .setAlign(Blockly.ALIGN_RIGHT)
-		    .appendField("Distance")
-		    .appendField(new Blockly.FieldTextInput("5", Blockly.FieldTextInput.numberValidator), "Distance")
-		    .appendField(new Blockly.FieldDropdown([["um", "um"],["mm", "mm"], ["cm", "cm"]]), "Unit_Distance");
+  init: function () {
+
+    /*Usual initialization of a common block*/
+    this.setInputsInline(false);
+    //this.setPreviousStatement(true);
+    //	this.setNextStatement(true);
+
+    this.setOutput(true, null);
+    this.setColour(220);
+
+    //Creating inputs.
     this.appendDummyInput()
-		    .setAlign(Blockly.ALIGN_RIGHT)
-		    .appendField("Speed")
-		    .appendField(new Blockly.FieldTextInput("10", Blockly.FieldTextInput.numberValidator), "Speed")
-		    .appendField(new Blockly.FieldDropdown([["um/sec", "um_per_sec"], ["um/min", "um_per_minute"],  ["mm/sec", "mm_per_sec"], ["mm/min", "mm_per_minute"],["cm/sec", "cm_per_sec"], ["cm/min", "cm_per_minute"]]), "Unit_Speed");
+      .setAlign(Blockly.ALIGN_CENTRE)
+      .appendField("DIP COATING")
+    this.setTooltip('dipcoating');
 
-        
+
+    this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Direction")
+      // .appendField(new Blockly.FieldTextInput("Direction")
+      .appendField(new Blockly.FieldDropdown([["Up", "+"], ["Down", "-"]]), "Unit_Direction");
+
+    this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Distance")
+      .appendField(new Blockly.FieldTextInput("5", Blockly.FieldTextInput.numberValidator), "Distance")
+      .appendField(new Blockly.FieldDropdown([["um", "um"], ["mm", "mm"], ["cm", "cm"]]), "Unit_Distance");
+    this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Speed")
+      .appendField(new Blockly.FieldTextInput("10", Blockly.FieldTextInput.numberValidator), "Speed")
+      .appendField(new Blockly.FieldDropdown([["um/sec", "um_per_sec"], ["um/min", "um_per_minute"], ["mm/sec", "mm_per_sec"], ["mm/min", "mm_per_minute"], ["cm/sec", "cm_per_sec"], ["cm/min", "cm_per_minute"]]), "Unit_Speed");
+
+
   }
 };
 
 
 Blockly.Blocks['experiment'] = {
-  init: function() {
-   
-	/*Usual initialization of a common block*/
-	this.appendDummyInput("Experiment")
-		.setAlign(Blockly.ALIGN_CENTRE)
-        .appendField("Experiment"); //name of the block
+  init: function () {
+
+    /*Usual initialization of a common block*/
+    this.appendDummyInput("Experiment")
+      .setAlign(Blockly.ALIGN_CENTRE)
+      .appendField("Experiment"); //name of the block
     this.setInputsInline(false);
     this.setTooltip('');
     this.setHelpUrl('http://www.example.com/');
     this.appendDummyInput("experimentName")
-			.setAlign(Blockly.ALIGN_RIGHT)
-			.appendField("Name/Reference")
-			.appendField(new Blockly.FieldTextInput("insert name"), "experimentName");
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Name/Reference")
+      .appendField(new Blockly.FieldTextInput("insert name"), "experimentName");
     this.appendStatementInput("inputOfExperiment");
-   
+
   },
-  onchange : function(){
-  		myOwnFunction1();
-  		myOwnFunction2();
-  		myOwnFunction3();
-	}
+  onchange: function () {
+    // myOwnFunction1();
+    // myOwnFunction2();
+    // myOwnFunction3();
+  }
 };
 
 /* Custom Block SetPosition Javascript code 
 Note: Block names should match with constants*/
-Blockly.JavaScript[G_COMMANDS.MOVE] = function(block) {
+Blockly.JavaScript[G_COMMANDS.MOVE] = function (block) {
   var number_x = block.getFieldValue('X');
   var number_y = block.getFieldValue('Y');
   var number_z = block.getFieldValue('Z');
   var number_e = block.getFieldValue('E');
   var number_f = block.getFieldValue('F');
   let args = [number_x, number_y, number_z, number_e, number_f];
-  
+
   var code = fetchGCommand(G_COMMANDS.MOVE, args)
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
-Blockly.JavaScript[G_COMMANDS.DWELL] = function(block) {
+Blockly.JavaScript[G_COMMANDS.DWELL] = function (block) {
   var number_p = block.getFieldValue('P');
   let args = [number_p];
-  
+
   var code = fetchGCommand(G_COMMANDS.DWELL, args)
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
-Blockly.JavaScript[G_COMMANDS.MOVE_TO_ORIGIN] = function(block) {
+Blockly.JavaScript[G_COMMANDS.MOVE_TO_ORIGIN] = function (block) {
   var number_x = block.getFieldValue('X');
   var number_y = block.getFieldValue('Y');
   var number_z = block.getFieldValue('Z');
 
   let args = [number_x, number_y, number_z];
-  
+
   var code = fetchGCommand(G_COMMANDS.MOVE_TO_ORIGIN, args)
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
@@ -450,129 +450,129 @@ Blockly.JavaScript[G_COMMANDS.SET_POSITION] = (block) => {
   let number_z = block.getFieldValue("Z");
   let number_e = block.getFieldValue("E");
   let args = [number_x, number_y, number_z, number_e];
-  
+
   var code = fetchGCommand(G_COMMANDS.SET_POSITION, args)
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
-Blockly.JavaScript[G_COMMANDS.SET_SPEED_FACTOR_OVERRIDE] = function(block) {
+Blockly.JavaScript[G_COMMANDS.SET_SPEED_FACTOR_OVERRIDE] = function (block) {
   var number_s = block.getFieldValue('S');
   let args = [number_s];
-  
+
   var code = fetchGCommand(G_COMMANDS.SET_SPEED_FACTOR_OVERRIDE, args)
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
-Blockly.JavaScript[G_COMMANDS.SET_ACCELERATION] = function(block) {
+Blockly.JavaScript[G_COMMANDS.SET_ACCELERATION] = function (block) {
   var number_s = block.getFieldValue('S');
   let args = [number_s];
-  
+
   var code = fetchGCommand(G_COMMANDS.SET_ACCELERATION, args)
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
-Blockly.JavaScript[G_COMMANDS.SET_EXTRUDE_FACTOR_OVERRIDE] = function(block) {
+Blockly.JavaScript[G_COMMANDS.SET_EXTRUDE_FACTOR_OVERRIDE] = function (block) {
   var number_s = block.getFieldValue('S');
   let args = [number_s];
-  
+
   var code = fetchGCommand(G_COMMANDS.SET_EXTRUDE_FACTOR_OVERRIDE, args)
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
-Blockly.JavaScript[G_COMMANDS.SET_EXTRUDER_TEMPERATURE] = function(block) {
+Blockly.JavaScript[G_COMMANDS.SET_EXTRUDER_TEMPERATURE] = function (block) {
   var number_t = block.getFieldValue('T');
   var number_s = block.getFieldValue('S');
   let args = [number_t, number_s];
-  
+
   var code = fetchGCommand(G_COMMANDS.SET_EXTRUDER_TEMPERATURE, args)
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
-Blockly.JavaScript[G_COMMANDS.SET_EXTRUDER_TEMPERATURE_WITH_WAIT] = function(block) {
+Blockly.JavaScript[G_COMMANDS.SET_EXTRUDER_TEMPERATURE_WITH_WAIT] = function (block) {
   var number_t = block.getFieldValue('T');
   var number_s = block.getFieldValue('S');
   let args = [number_t, number_s];
-  
+
   var code = fetchGCommand(G_COMMANDS.SET_EXTRUDER_TEMPERATURE_WITH_WAIT, args)
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
-Blockly.JavaScript[G_COMMANDS.SET_BED_TEMPERATURE] = function(block) {
+Blockly.JavaScript[G_COMMANDS.SET_BED_TEMPERATURE] = function (block) {
   var number_s = block.getFieldValue('S');
   let args = [number_s];
-  
+
   var code = fetchGCommand(G_COMMANDS.SET_BED_TEMPERATURE, args)
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
-Blockly.JavaScript[G_COMMANDS.SET_BED_TEMPERATURE_WITH_WAIT] = function(block) {
+Blockly.JavaScript[G_COMMANDS.SET_BED_TEMPERATURE_WITH_WAIT] = function (block) {
   var number_s = block.getFieldValue('S');
   let args = [number_s];
-  
+
   var code = fetchGCommand(G_COMMANDS.SET_BED_TEMPERATURE_WITH_WAIT, args)
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
-Blockly.JavaScript[G_COMMANDS.SET_FAN_SPEED] = function(block) {
+Blockly.JavaScript[G_COMMANDS.SET_FAN_SPEED] = function (block) {
   var number_s = block.getFieldValue('S');
   let args = [number_s];
-  
+
   var code = fetchGCommand(G_COMMANDS.SET_FAN_SPEED, args)
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-Blockly.JavaScript['centrifugation'] = function(block) {
-	JSONcode = JSONcode + '             {\n                "op": "spin",\n'; 
-	regularJSONTranslation_(this)
+Blockly.JavaScript['centrifugation'] = function (block) {
+  JSONcode = JSONcode + '             {\n                "op": "spin",\n';
+  regularJSONTranslation_(this)
 };
 
-Blockly.JavaScript['dipcoating'] = function(block) {
+Blockly.JavaScript['dipcoating'] = function (block) {
   var unit_direction = block.getFieldValue('Unit_Direction');
   var number_distance = block.getFieldValue('Distance');
   var unit_distance = block.getFieldValue('Unit_Distance');
   var number_speed = block.getFieldValue('Speed');
   var unit_speed = block.getFieldValue('Unit_Speed');
 
-  let computed_distance= 0;
-  let computed_speed=0;
-switch (unit_distance) {
-  case 'mm':
-     computed_distance = number_distance;
-    break;
-  case 'cm':
-     computed_distance =  number_distance*10;
-    break;
-  case 'um':
-     computed_distance = number_distance*0.001;
-    break;
-  default:
-     computed_distance = number_distance;
-    break;
-}
-switch (unit_speed) {
-  case 'um_per_sec':
-      computed_speed= number_speed*(0.001*60).toFixed(3);
-    break;
-  case 'um_per_min':
-      computed_speed= number_speed*(0.001).toFixed(3);
-    break;
-  case 'mm_per_sec':
-      computed_speed = number_speed*(60).toFixed(3);
-    break;
-  case 'mm_per_min':
-      computed_speed= number_speed.toFixed(3);
-    break;
- case 'cm_per_sec':
-      computed_speed= number_speed*(10*60).toFixed(3);
-    break;
- case 'cm_per_min':
-      computed_speed = number_speed*(10).toFixed(3);
-    break;
-  default:
+  let computed_distance = 0;
+  let computed_speed = 0;
+  switch (unit_distance) {
+    case 'mm':
+      computed_distance = number_distance;
+      break;
+    case 'cm':
+      computed_distance = number_distance * 10;
+      break;
+    case 'um':
+      computed_distance = number_distance * 0.001;
+      break;
+    default:
+      computed_distance = number_distance;
+      break;
+  }
+  switch (unit_speed) {
+    case 'um_per_sec':
+      computed_speed = number_speed * (0.001 * 60).toFixed(3);
+      break;
+    case 'um_per_min':
+      computed_speed = number_speed * (0.001).toFixed(3);
+      break;
+    case 'mm_per_sec':
+      computed_speed = number_speed * (60).toFixed(3);
+      break;
+    case 'mm_per_min':
+      computed_speed = number_speed.toFixed(3);
+      break;
+    case 'cm_per_sec':
+      computed_speed = number_speed * (10 * 60).toFixed(3);
+      break;
+    case 'cm_per_min':
+      computed_speed = number_speed * (10).toFixed(3);
+      break;
+    default:
       computed_speed = number_speed;
-    break;
-}
-let distance_vector = unit_direction ==='+'?'+'+computed_distance:'-'+computed_distance;
+      break;
+  }
+  let distance_vector = unit_direction === '+' ? '+' + computed_distance : '-' + computed_distance;
 
   let args = [distance_vector, computed_speed];
   var code = fetchGCommand(G_COMMANDS.MOVEUPDOWN, args)
