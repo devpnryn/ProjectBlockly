@@ -4,6 +4,7 @@ reference used is https://github.com/KevinOConnor/klipper/blob/master/docs/G-Cod
 */
 const G_COMMANDS = {
   MOVE: "Move",
+  MOVEUPDOWN:"MoveUpandDownr",
   DWELL: "Dwell",
   MOVE_TO_ORIGIN: "MoveToOrigin",
   TURN_OFF_MOTORS: "TurnOffMotors",
@@ -30,6 +31,9 @@ const G_COMMANDS = {
 let gCommandsDictionary = {};
 // Move (G0 or G1): G1 [X<pos>] [Y<pos>] [Z<pos>] [E<pos>] [F<speed>]
 gCommandsDictionary[G_COMMANDS.MOVE] = `G1 X%1 Y%2 Z%3 E%4 F%5`;
+
+// Move (G0 or G1): G1 [X<pos>] [Y<pos>] \\coating
+gCommandsDictionary[G_COMMANDS.MOVEUPDOWN] = `G1 Z%1 F%2`;
 // Dwell: G4 P<milliseconds>
 gCommandsDictionary[G_COMMANDS.DWELL] = `G4 P%1`;
 // Move to origin: G28 [X] [Y] [Z]
@@ -291,6 +295,122 @@ Blockly.Blocks[G_COMMANDS.SET_FAN_SPEED] = {
   }
 };
 
+/***************************************************************************************************************************************************************/
+/* Name: centrifugation.js																																	   */
+/* Developer: Jes�s Irimia								 																									   */
+/* Function: Special function of centrifugate. Include special inputs for the centrifugate function.						                                   */	
+/*																																							   */
+/*																																				               */
+/***************************************************************************************************************************************************************/		
+/***************************************************************************************************************************************************************/
+Blockly.Blocks['centrifugation'] = {
+	
+	init: function() {
+		
+		/*Usual initialization of a common block*/
+		this.setInputsInline(false);
+		this.setPreviousStatement(true);
+		this.setNextStatement(true);
+		this.setColour(120);
+		
+		//Creating inputs.
+		this.appendDummyInput()
+			.setAlign(Blockly.ALIGN_CENTRE)
+			.appendField("CENTRIFUGATION")
+		this.setTooltip('');
+		
+		this.appendValueInput("source")
+		   // .setCheck("containerCheck")
+		    .setAlign(Blockly.ALIGN_RIGHT)
+		    .appendField("container input");
+		    
+		this.appendDummyInput()
+		    .setAlign(Blockly.ALIGN_RIGHT)
+		    .appendField("speed")
+		    .appendField(new Blockly.FieldTextInput("0", Blockly.FieldTextInput.numberValidator), "SPEED")
+		    .appendField(" rpm");
+		this.appendDummyInput()
+		    .setAlign(Blockly.ALIGN_RIGHT)
+		    .appendField("duration")
+		    .appendField(new Blockly.FieldTextInput("0", Blockly.FieldTextInput.numberValidator), "DURATION")
+		    .appendField(new Blockly.FieldDropdown([["Minutes", "minute"], ["Millisecond", "millisecond"], ["Seconds", "second"], ["Hours", "hour"]]), "Unit_Time");
+		this.appendDummyInput()
+		    .setAlign(Blockly.ALIGN_RIGHT)
+		    .appendField("time of operation")
+		    .appendField(new Blockly.FieldTextInput("0", Blockly.FieldTextInput.numberValidator), "timeOfOperation");
+		this.appendDummyInput()
+		    .setAlign(Blockly.ALIGN_RIGHT)
+		    .appendField("Temperature")
+		    .appendField(new Blockly.FieldTextInput("---", Blockly.FieldTextInput.numberValidator), "TEMPERATURE")
+		    .appendField(new Blockly.FieldDropdown([["Celsius", "celsius"], ["Kelvin", "kelvin"]]), "Unit_Temp");          
+  }
+};
+
+Blockly.Blocks['dipcoating'] = {
+	
+	init: function() {
+		
+		/*Usual initialization of a common block*/
+		this.setInputsInline(false);
+		//this.setPreviousStatement(true);
+	//	this.setNextStatement(true);
+  
+     this.setOutput(true, null);
+		this.setColour(220);
+		
+		//Creating inputs.
+		this.appendDummyInput()
+			.setAlign(Blockly.ALIGN_CENTRE)
+			.appendField("DIP COATING")
+		this.setTooltip('dipcoating');
+		
+		    
+		this.appendDummyInput()
+		    .setAlign(Blockly.ALIGN_RIGHT)
+		    .appendField("Direction")
+		   // .appendField(new Blockly.FieldTextInput("Direction")
+        .appendField(new Blockly.FieldDropdown([["Up", "+"], ["Down", "-"]]), "Unit_Direction");
+
+		this.appendDummyInput()
+		    .setAlign(Blockly.ALIGN_RIGHT)
+		    .appendField("Distance")
+		    .appendField(new Blockly.FieldTextInput("5", Blockly.FieldTextInput.numberValidator), "Distance")
+		    .appendField(new Blockly.FieldDropdown([["um", "um"],["mm", "mm"], ["cm", "cm"]]), "Unit_Distance");
+    this.appendDummyInput()
+		    .setAlign(Blockly.ALIGN_RIGHT)
+		    .appendField("Speed")
+		    .appendField(new Blockly.FieldTextInput("10", Blockly.FieldTextInput.numberValidator), "Speed")
+		    .appendField(new Blockly.FieldDropdown([["um/sec", "um_per_sec"], ["um/min", "um_per_minute"],  ["mm/sec", "mm_per_sec"], ["mm/min", "mm_per_minute"],["cm/sec", "cm_per_sec"], ["cm/min", "cm_per_minute"]]), "Unit_Speed");
+
+        
+  }
+};
+
+
+Blockly.Blocks['experiment'] = {
+  init: function() {
+   
+	/*Usual initialization of a common block*/
+	this.appendDummyInput("Experiment")
+		.setAlign(Blockly.ALIGN_CENTRE)
+        .appendField("Experiment"); //name of the block
+    this.setInputsInline(false);
+    this.setTooltip('');
+    this.setHelpUrl('http://www.example.com/');
+    this.appendDummyInput("experimentName")
+			.setAlign(Blockly.ALIGN_RIGHT)
+			.appendField("Name/Reference")
+			.appendField(new Blockly.FieldTextInput("insert name"), "experimentName");
+    this.appendStatementInput("inputOfExperiment");
+   
+  },
+  onchange : function(){
+  		myOwnFunction1();
+  		myOwnFunction2();
+  		myOwnFunction3();
+	}
+};
+
 /* Custom Block SetPosition Javascript code 
 Note: Block names should match with constants*/
 Blockly.JavaScript[G_COMMANDS.MOVE] = function(block) {
@@ -401,6 +521,64 @@ Blockly.JavaScript[G_COMMANDS.SET_FAN_SPEED] = function(block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.JavaScript['centrifugation'] = function(block) {
+	JSONcode = JSONcode + '             {\n                "op": "spin",\n'; 
+	regularJSONTranslation_(this)
+};
+
+Blockly.JavaScript['dipcoating'] = function(block) {
+  var unit_direction = block.getFieldValue('Unit_Direction');
+  var number_distance = block.getFieldValue('Distance');
+  var unit_distance = block.getFieldValue('Unit_Distance');
+  var number_speed = block.getFieldValue('Speed');
+  var unit_speed = block.getFieldValue('Unit_Speed');
+
+  let computed_distance= 0;
+  let computed_speed=0;
+switch (unit_distance) {
+  case 'mm':
+     computed_distance = number_distance;
+    break;
+  case 'cm':
+     computed_distance =  number_distance*10;
+    break;
+  case 'um':
+     computed_distance = number_distance*0.001;
+    break;
+  default:
+     computed_distance = number_distance;
+    break;
+}
+switch (unit_speed) {
+  case 'um_per_sec':
+      computed_speed= number_speed*(0.001*60).toFixed(3);
+    break;
+  case 'um_per_min':
+      computed_speed= number_speed*(0.001).toFixed(3);
+    break;
+  case 'mm_per_sec':
+      computed_speed = number_speed*(60).toFixed(3);
+    break;
+  case 'mm_per_min':
+      computed_speed= number_speed.toFixed(3);
+    break;
+ case 'cm_per_sec':
+      computed_speed= number_speed*(10*60).toFixed(3);
+    break;
+ case 'cm_per_min':
+      computed_speed = number_speed*(10).toFixed(3);
+    break;
+  default:
+      computed_speed = number_speed;
+    break;
+}
+let distance_vector = unit_direction ==='+'?'+'+computed_distance:'-'+computed_distance;
+
+  let args = [distance_vector, computed_speed];
+  var code = fetchGCommand(G_COMMANDS.MOVEUPDOWN, args)
+  return [code, Blockly.JavaScript.ORDER_NONE];
+
+};
 
 /* Helper function to construct respective command using dictionary  
 // A word 'GCode:' is added in front of every GCode generation as an identifier */
