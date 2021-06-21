@@ -32,7 +32,7 @@ let gCommandsDictionary = {};
 // Move (G0 or G1): G1 [X<pos>] [Y<pos>] [Z<pos>] [E<pos>] [F<speed>]
 gCommandsDictionary[G_COMMANDS.MOVE] = `G1 X%1 Y%2 Z%3 E%4 F%5`;
 
-// Move (G0 or G1): G1 [X<pos>] [Y<pos>] 
+// Move (G0 or G1): G1 [X<pos>] [Y<pos>] \\coating
 gCommandsDictionary[G_COMMANDS.MOVEUPDOWN] = `G1 Z%1 F%2`;
 // Dwell: G4 P<milliseconds>
 gCommandsDictionary[G_COMMANDS.DWELL] = `G4 P%1`;
@@ -551,16 +551,25 @@ switch (unit_distance) {
 }
 switch (unit_speed) {
   case 'um_per_sec':
-       computed_speed= number_speed*0.001;
-      break;
- case 'um_per_min':
-    computed_speed= number_speed*(0.001).toFixed(3);
-   break;
-   case 'mm_per_sec':
-      computed_speed = number_speed;
-     break;
+      computed_speed= number_speed*(0.001*60).toFixed(3);
+    break;
+  case 'um_per_min':
+      computed_speed= number_speed*(0.001).toFixed(3);
+    break;
+  case 'mm_per_sec':
+      computed_speed = number_speed*(60).toFixed(3);
+    break;
+  case 'mm_per_min':
+      computed_speed= number_speed.toFixed(3);
+    break;
+ case 'cm_per_sec':
+      computed_speed= number_speed*(10*60).toFixed(3);
+    break;
+ case 'cm_per_min':
+      computed_speed = number_speed*(10).toFixed(3);
+    break;
   default:
-     computed_speed = number_speed;
+      computed_speed = number_speed;
     break;
 }
 let distance_vector = unit_direction ==='+'?'+'+computed_distance:'-'+computed_distance;
