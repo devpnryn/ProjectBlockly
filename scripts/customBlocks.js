@@ -33,7 +33,7 @@ let gCommandsDictionary = {};
 gCommandsDictionary[G_COMMANDS.MOVE] = `G1 X%1 Y%2 Z%3 E%4 F%5`;
 
 // Move (G0 or G1): G1 [X<pos>] [Y<pos>] \\coating
-gCommandsDictionary[G_COMMANDS.MOVEUPDOWN] = `G1 Z%1 F%2`;
+gCommandsDictionary[G_COMMANDS.MOVE_UP_DOWN] = `G1 Z%1 F%2`;
 // Dwell: G4 P<milliseconds>
 gCommandsDictionary[G_COMMANDS.DWELL] = `G4 P%1`;
 // Move to origin: G28 [X] [Y] [Z]
