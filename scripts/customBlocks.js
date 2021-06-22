@@ -4,7 +4,7 @@ reference used is https://github.com/KevinOConnor/klipper/blob/master/docs/G-Cod
 */
 const G_COMMANDS = {
   MOVE: "Move",
-  MOVEUPDOWN: "MoveUpandDownr",
+  MOVE_UP_DOWN: "MoveUpandDown",
   DWELL: "Dwell",
   MOVE_TO_ORIGIN: "MoveToOrigin",
   TURN_OFF_MOTORS: "TurnOffMotors",
@@ -375,12 +375,12 @@ Blockly.Blocks['dipcoating'] = {
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("Distance")
       .appendField(new Blockly.FieldTextInput("5", Blockly.FieldTextInput.numberValidator), "Distance")
-      .appendField(new Blockly.FieldDropdown([["um", "um"], ["mm", "mm"], ["cm", "cm"]]), "Unit_Distance");
+      .appendField(new Blockly.FieldDropdown([["um", "0.001"], ["mm", "1"], ["cm", "10"]]), "Unit_Distance");
     this.appendDummyInput()
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("Speed")
       .appendField(new Blockly.FieldTextInput("10", Blockly.FieldTextInput.numberValidator), "Speed")
-      .appendField(new Blockly.FieldDropdown([["um/sec", "um_per_sec"], ["um/min", "um_per_minute"], ["mm/sec", "mm_per_sec"], ["mm/min", "mm_per_minute"], ["cm/sec", "cm_per_sec"], ["cm/min", "cm_per_minute"]]), "Unit_Speed");
+      .appendField(new Blockly.FieldDropdown([["um/sec", "0.06"], ["um/min", "0.001"], ["mm/sec", "60"], ["mm/min", "1"], ["cm/sec", "600"], ["cm/min", "10"]]), "Unit_Speed");
 
 
   }
@@ -527,55 +527,18 @@ Blockly.JavaScript['centrifugation'] = function (block) {
 };
 
 Blockly.JavaScript['dipcoating'] = function (block) {
-  var unit_direction = block.getFieldValue('Unit_Direction');
-  var number_distance = block.getFieldValue('Distance');
-  var unit_distance = block.getFieldValue('Unit_Distance');
-  var number_speed = block.getFieldValue('Speed');
-  var unit_speed = block.getFieldValue('Unit_Speed');
+  let unit_direction = block.getFieldValue('Unit_Direction');
+  let number_distance = block.getFieldValue('Distance');
+  let unit_distance = block.getFieldValue('Unit_Distance');
+  let number_speed = block.getFieldValue('Speed');
+  let unit_speed = block.getFieldValue('Unit_Speed');
 
-  let computed_distance = 0;
-  let computed_speed = 0;
-  switch (unit_distance) {
-    case 'mm':
-      computed_distance = number_distance;
-      break;
-    case 'cm':
-      computed_distance = number_distance * 10;
-      break;
-    case 'um':
-      computed_distance = number_distance * 0.001;
-      break;
-    default:
-      computed_distance = number_distance;
-      break;
-  }
-  switch (unit_speed) {
-    case 'um_per_sec':
-      computed_speed = number_speed * (0.001 * 60).toFixed(3);
-      break;
-    case 'um_per_min':
-      computed_speed = number_speed * (0.001).toFixed(3);
-      break;
-    case 'mm_per_sec':
-      computed_speed = number_speed * (60).toFixed(3);
-      break;
-    case 'mm_per_min':
-      computed_speed = number_speed.toFixed(3);
-      break;
-    case 'cm_per_sec':
-      computed_speed = number_speed * (10 * 60).toFixed(3);
-      break;
-    case 'cm_per_min':
-      computed_speed = number_speed * (10).toFixed(3);
-      break;
-    default:
-      computed_speed = number_speed;
-      break;
-  }
-  let distance_vector = unit_direction === '+' ? '+' + computed_distance : '-' + computed_distance;
+  let computed_distance = number_distance * unit_distance;
+  let computed_speed = (number_speed * unit_speed).toFixed(3);
+  let distance_vector = (unit_direction === '+') ? '+' + computed_distance : '-' + computed_distance;
 
   let args = [distance_vector, computed_speed];
-  var code = fetchGCommand(G_COMMANDS.MOVEUPDOWN, args)
+  var code = fetchGCommand(G_COMMANDS.MOVE_UP_DOWN, args)
   return [code, Blockly.JavaScript.ORDER_NONE];
 
 };
