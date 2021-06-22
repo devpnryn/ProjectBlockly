@@ -562,7 +562,7 @@ Blockly.JavaScript['dipcoating'] = function (block) {
 Blockly.JavaScript['dip_time'] = function (block) {
   var number_p = block.getFieldValue('P');
   var number_time = block.getFieldValue('diptime');
-  let computed_dip_time = number_p * number_time;
+  let computed_dip_time = number_p * number_time.toFixed(3);
 
   let args = [computed_dip_time];
 
