@@ -386,6 +386,22 @@ Blockly.Blocks['dipcoating'] = {
   }
 };
 
+Blockly.Blocks['dip_time'] = {
+  init: function () {
+    this.appendDummyInput()
+        .appendField('Wait');
+    this.appendDummyInput()
+        .appendField("for")
+        .appendField(new Blockly.FieldNumber(20), "P")
+        .appendField(new Blockly.FieldDropdown([["msec", "0.001"],["sec", "1"], ["min", "60"]]), "diptime");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(300);
+    this.setTooltip('diptiming');
+    this.setHelpUrl("");
+  }
+};
+
 
 Blockly.Blocks['experiment'] = {
   init: function () {
@@ -541,6 +557,18 @@ Blockly.JavaScript['dipcoating'] = function (block) {
   var code = fetchGCommand(G_COMMANDS.MOVE_UP_DOWN, args)
   return [code, Blockly.JavaScript.ORDER_NONE];
 
+};
+
+Blockly.JavaScript['dip_time'] = function (block) {
+  var number_p = block.getFieldValue('P');
+  var number_time = block.getFieldValue('diptime');
+  let computed_dip_time = (number_p * number_time).toFixed(3);
+
+  let args = [computed_dip_time];
+
+  var code = fetchGCommand(G_COMMANDS.DWELL, args)
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
 /* Helper function to construct respective command using dictionary  
