@@ -393,7 +393,7 @@ Blockly.Blocks['dip_time'] = {
     this.appendDummyInput()
         .appendField("for")
         .appendField(new Blockly.FieldNumber(20), "P")
-        .appendField(new Blockly.FieldDropdown([["sec", "sec"], ["min", "min"]]), "diptime");
+        .appendField(new Blockly.FieldDropdown([["msec", "0.001"],["sec", "1"], ["min", "60"]]), "diptime");
     this.setInputsInline(true);
     this.setOutput(true, null);
     this.setColour(300);
@@ -562,19 +562,7 @@ Blockly.JavaScript['dipcoating'] = function (block) {
 Blockly.JavaScript['dip_time'] = function (block) {
   var number_p = block.getFieldValue('P');
   var number_time = block.getFieldValue('diptime');
-  let computed_dip_time = 0;
-  switch (number_time) {
-    case 'sec':
-      computed_dip_time = number_p;
-      break;
-    case 'min':
-      computed_dip_time = number_p*60;
-      break;
-    default:
-      computed_dip_time = number_p;
-    break;
-
-  }
+  let computed_dip_time = number_p*number_time*toFixed(3);
 
   let args = [computed_dip_time];
 
