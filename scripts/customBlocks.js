@@ -5,6 +5,7 @@ reference used is https://github.com/KevinOConnor/klipper/blob/master/docs/G-Cod
 const G_COMMANDS = {
   MOVE: "Move",
   MOVE_UP_DOWN: "MoveUpandDown",
+  SET_EXPERIMENT_TITLE:"SetExperimentTitle",
   DWELL: "Dwell",
   MOVE_TO_ORIGIN: "MoveToOrigin",
   TURN_OFF_MOTORS: "TurnOffMotors",
@@ -29,11 +30,15 @@ const G_COMMANDS = {
   GET_FIRMWARE_VERSION: "GetFirmwareVersion",
 };
 let gCommandsDictionary = {};
+
 // Move (G0 or G1): G1 [X<pos>] [Y<pos>] [Z<pos>] [E<pos>] [F<speed>]
 gCommandsDictionary[G_COMMANDS.MOVE] = `G1 X%1 Y%2 Z%3 E%4 F%5`;
 
-// Move (G0 or G1): G1 [X<pos>] [Y<pos>] \\coating
+// Move (G0 or G1): G1 [Z<pos>] [F<pos>] \\coating
 gCommandsDictionary[G_COMMANDS.MOVE_UP_DOWN] = `G1 Z%1 F%2`;
+
+// Set title
+gCommandsDictionary[G_COMMANDS.SET_EXPERIMENT_TITLE]=`%1`;
 // Dwell: G4 P<milliseconds>
 gCommandsDictionary[G_COMMANDS.DWELL] = `G4 P%1`;
 // Move to origin: G28 [X] [Y] [Z]
@@ -327,22 +332,22 @@ Blockly.Blocks['centrifugation'] = {
     this.appendDummyInput()
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("speed")
-      .appendField(new Blockly.FieldTextInput("0", Blockly.FieldTextInput.numberValidator), "SPEED")
+      .appendField(new Blockly.FieldTextInput("0", Blockly.FieldTextInput.numberValidator), "Speed")
       .appendField(" rpm");
     this.appendDummyInput()
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("duration")
-      .appendField(new Blockly.FieldTextInput("0", Blockly.FieldTextInput.numberValidator), "DURATION")
-      .appendField(new Blockly.FieldDropdown([["Minutes", "minute"], ["Millisecond", "millisecond"], ["Seconds", "second"], ["Hours", "hour"]]), "Unit_Time");
+      .appendField(new Blockly.FieldTextInput("0", Blockly.FieldTextInput.numberValidator), "Duration")
+      .appendField(new Blockly.FieldDropdown([["Minutes", "60"], ["Millisecond", "3600000"], ["Seconds", "3600"], ["Hours", "1"]]), "Unit_Time");
     this.appendDummyInput()
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("time of operation")
-      .appendField(new Blockly.FieldTextInput("0", Blockly.FieldTextInput.numberValidator), "timeOfOperation");
+      .appendField(new Blockly.FieldTextInput("0", Blockly.FieldTextInput.numberValidator), "TimeOfOperation");
     this.appendDummyInput()
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("Temperature")
-      .appendField(new Blockly.FieldTextInput("---", Blockly.FieldTextInput.numberValidator), "TEMPERATURE")
-      .appendField(new Blockly.FieldDropdown([["Celsius", "celsius"], ["Kelvin", "kelvin"]]), "Unit_Temp");
+      .appendField(new Blockly.FieldTextInput("0", Blockly.FieldTextInput.numberValidator), "Temperature")
+      .appendField(new Blockly.FieldDropdown([["Celsius", "C"], ["Kelvin", "K"]]), "Unit_Temp");
   }
 };
 
@@ -389,11 +394,11 @@ Blockly.Blocks['dipcoating'] = {
 Blockly.Blocks['dip_time'] = {
   init: function () {
     this.appendDummyInput()
-        .appendField('Wait');
+      .appendField('Wait');
     this.appendDummyInput()
-        .appendField("for")
-        .appendField(new Blockly.FieldNumber(20), "P")
-        .appendField(new Blockly.FieldDropdown([["msec", "0.001"],["sec", "1"], ["min", "60"]]), "diptime");
+      .appendField("for")
+      .appendField(new Blockly.FieldNumber(20), "P")
+      .appendField(new Blockly.FieldDropdown([["msec", "0.001"], ["sec", "1"], ["min", "60"]]), "diptime");
     this.setInputsInline(true);
     this.setOutput(true, null);
     this.setColour(300);
@@ -420,11 +425,6 @@ Blockly.Blocks['experiment'] = {
     this.appendStatementInput("inputOfExperiment");
 
   },
-  onchange: function () {
-    // myOwnFunction1();
-    // myOwnFunction2();
-    // myOwnFunction3();
-  }
 };
 
 /* Custom Block SetPosition Javascript code 
@@ -538,8 +538,26 @@ Blockly.JavaScript[G_COMMANDS.SET_FAN_SPEED] = function (block) {
 };
 
 Blockly.JavaScript['centrifugation'] = function (block) {
-  JSONcode = JSONcode + '             {\n                "op": "spin",\n';
-  regularJSONTranslation_(this)
+
+  let speed = block.getFieldValue('Speed');
+
+  let duration = block.getFieldValue('Duration');
+  let unitOfTime = block.getFieldValue('Unit_Time');
+
+  let timeOfOperation = block.getFieldValue('TimeOfOperation');
+
+  let temperature = block.getFieldValue('Temperature');
+  let unitOfTemp = block.getFieldValue('Unit_Temp');
+
+  let computedDuration = (duration * unitOfTime);
+  let computedTemperature = temperature.toString() + unitOfTemp.toString();
+
+  let args = [speed, timeOfOperation, computedDuration, computedTemperature];
+  let code = fetchGCommand(G_COMMANDS.SET_POSITION, args);
+  return [code, Blockly.JavaScript.ORDER_NONE];
+
+  // JSONcode = JSONcode + '             {\n                "op": "spin",\n';
+  // regularJSONTranslation_(this)
 };
 
 Blockly.JavaScript['dipcoating'] = function (block) {
@@ -570,6 +588,13 @@ Blockly.JavaScript['dip_time'] = function (block) {
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
+Blockly.JavaScript['experiment'] = function (block) {
+  let expirementName = block.getFieldValue('experimentName');
+  let args = [''.padStart(20)+expirementName.padEnd(20)];
+  let code = fetchGCommand(G_COMMANDS.SET_EXPERIMENT_TITLE, args);
+  
+  return code;
+}
 
 /* Helper function to construct respective command using dictionary  
 // A word 'GCode:' is added in front of every GCode generation as an identifier */
